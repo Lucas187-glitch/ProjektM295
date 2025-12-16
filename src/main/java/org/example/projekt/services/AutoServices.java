@@ -108,6 +108,30 @@ public class AutoServices {
                         .build();
             }
 
+            // Validierung 1: Baujahr darf nicht in der Zukunft liegen (DATE)
+            if (auto.getBaujahr().isAfter(LocalDate.now())) {
+                LOGGER.log(Level.WARNING, "Baujahr liegt in der Zukunft: " + auto.getBaujahr());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Baujahr darf nicht in der Zukunft liegen")
+                        .build();
+            }
+
+            // Validierung 2: Gewicht muss größer als 0 sein (DECIMAL)
+            if (auto.getGewicht() <= 0) {
+                LOGGER.log(Level.WARNING, "Ungültiges Gewicht: " + auto.getGewicht());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Gewicht muss größer als 0 sein")
+                        .build();
+            }
+
+            // Validierung 3: Leistung muss größer als 0 sein (INTEGER)
+            if (auto.getLeistung() <= 0) {
+                LOGGER.log(Level.WARNING, "Ungültige Leistung: " + auto.getLeistung());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Leistung muss größer als 0 sein (PS)")
+                        .build();
+            }
+
             int rowsInserted = db.addAuto(auto);
             if (rowsInserted > 0) {
                 LOGGER.info("Neues Auto erfolgreich hinzugefügt: " + auto.getModell());
@@ -197,6 +221,30 @@ public class AutoServices {
             if (auto.getModell() == null || auto.getModell().trim().isEmpty()) {
                 return Response.status(Response.Status.BAD_REQUEST)
                         .entity("Fehler: Modell darf nicht leer sein")
+                        .build();
+            }
+
+            // Validierung 1: Baujahr darf nicht in der Zukunft liegen (DATE)
+            if (auto.getBaujahr().isAfter(LocalDate.now())) {
+                LOGGER.log(Level.WARNING, "Baujahr liegt in der Zukunft: " + auto.getBaujahr());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Baujahr darf nicht in der Zukunft liegen")
+                        .build();
+            }
+
+            // Validierung 2: Gewicht muss größer als 0 sein (DECIMAL)
+            if (auto.getGewicht() <= 0) {
+                LOGGER.log(Level.WARNING, "Ungültiges Gewicht: " + auto.getGewicht());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Gewicht muss größer als 0 sein")
+                        .build();
+            }
+
+            // Validierung 3: Leistung muss größer als 0 sein (INTEGER)
+            if (auto.getLeistung() <= 0) {
+                LOGGER.log(Level.WARNING, "Ungültige Leistung: " + auto.getLeistung());
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Fehler: Leistung muss größer als 0 sein (PS)")
                         .build();
             }
 
