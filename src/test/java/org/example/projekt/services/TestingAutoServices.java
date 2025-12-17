@@ -271,10 +271,10 @@ public class TestingAutoServices {
     // ================== getAutosByBaujahr() Tests ==================
 
     @Test
-    @DisplayName("getAutosByBaujahr - Positiv: Autos im Zeitraum abrufen")
+    @DisplayName("getAutosByBaujahr - Positiv: Autos nach Jahr abrufen")
     void testGetAutosByBaujahr_Success() {
         // Act
-        Response response = autoServices.getAutosByBaujahr("2020-01-01", "2020-12-31");
+        Response response = autoServices.getAutosByBaujahr(2020);
 
         // Assert
         assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
@@ -282,14 +282,14 @@ public class TestingAutoServices {
     }
 
     @Test
-    @DisplayName("getAutosByBaujahr - Negativ: Ungültiges Datumsformat")
-    void testGetAutosByBaujahr_InvalidDateFormat() {
+    @DisplayName("getAutosByBaujahr - Negativ: Ungültiges Jahr (0)")
+    void testGetAutosByBaujahr_InvalidYear() {
         // Act
-        Response response = autoServices.getAutosByBaujahr("invalid-date", "2020-12-31");
+        Response response = autoServices.getAutosByBaujahr(0);
 
         // Assert
         assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
-        assertTrue(response.getEntity().toString().contains("gültiges Datum"));
+        assertTrue(response.getEntity().toString().contains("gültiges Jahr"));
     }
 
     // ================== countAutos() Tests ==================

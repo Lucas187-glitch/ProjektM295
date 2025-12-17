@@ -166,20 +166,17 @@ public class AutoServices {
     @Path("/baujahr")
     @RolesAllowed({"ADMIN", "USER"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAutosByBaujahr(@QueryParam("von") String vonStr, @QueryParam("bis") String bisStr) {
-        LOGGER.info("GET Request für Autos im Zeitraum: " + vonStr + " bis " + bisStr);
+    public Response getAutosByBaujahr(@QueryParam("jahr") int jahr) {
+        LOGGER.info("GET Request für Autos mit Baujahr: " + jahr);
 
         try {
-            LocalDate von = LocalDate.parse(vonStr);
-            LocalDate bis = LocalDate.parse(bisStr);
-
-            List<Auto> autos = db.getAutosByBaujahrRange(von, bis);
-            LOGGER.info(autos.size() + " Autos im Zeitraum gefunden");
+            List<Auto> autos = db.getAutosByJahr(jahr);
+            LOGGER.info(autos.size() + " Autos mit Baujahr " + jahr + " gefunden");
             return Response.ok(autos).build();
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Fehler beim Abrufen von Autos nach Baujahr", e);
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Fehler: Bitte gültiges Datum im Format YYYY-MM-DD angeben. " + e.getMessage())
+                    .entity("Fehler: Bitte gültiges Jahr angeben (z.B. 2020). " + e.getMessage())
                     .build();
         }
     }

@@ -151,15 +151,14 @@ public class DataBase {
         return rowsAffected;
     }
 
-    // Autos nach Baujahr-Zeitraum lesen (von-bis)
-    public List<Auto> getAutosByBaujahrRange(java.time.LocalDate von, java.time.LocalDate bis) throws SQLException {
+    // Autos nach Baujahr (Jahr) lesen
+    public List<Auto> getAutosByJahr(int jahr) throws SQLException {
         List<Auto> autos = new ArrayList<>();
         Connection con = DriverManager.getConnection(DB_URL);
         PreparedStatement pstmt = con.prepareStatement(
-            "SELECT ID_Autos, Modell, Baujahr, Gewicht, Leistung, Verbrenner, Produktion, FS_Marken FROM autos WHERE Baujahr BETWEEN ? AND ?"
+            "SELECT ID_Autos, Modell, Baujahr, Gewicht, Leistung, Verbrenner, Produktion, FS_Marken FROM autos WHERE YEAR(Baujahr) = ?"
         );
-        pstmt.setDate(1, Date.valueOf(von));
-        pstmt.setDate(2, Date.valueOf(bis));
+        pstmt.setInt(1, jahr);
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
             Auto auto = new Auto();
