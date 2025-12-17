@@ -1,5 +1,6 @@
 package org.example.projekt.services;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -15,6 +16,15 @@ import java.util.logging.Level;
 public class MarkeServices {
     private static final Logger LOGGER = Logger.getLogger(MarkeServices.class.getName());
     private DataBase db = new DataBase();
+
+    @GET
+    @Path("/ping")
+    @PermitAll
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response ping() {
+        LOGGER.info("Ping Request für Marke API");
+        return Response.ok("Marke API is running").build();
+    }
 
     @GET
     @RolesAllowed({"ADMIN", "USER"})
