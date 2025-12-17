@@ -68,8 +68,7 @@ https://github.com/Lucas187-glitch/ProjektM295/blob/master/Validierungsregeln.md
 Lucas Weisshaar
 
 ## Zusammenfassung
-
-
+Sehr tolles Projekt, es wurden alle Inhalte aus dem Modul erwähnt. Ich hatte das Gefühl, dass ich einige Themen erst in der Projektarbeit vertiefen konnte.
 
 
 
