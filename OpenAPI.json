@@ -1,0 +1,554 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1",
+    "title": "",
+    "description": ""
+  },
+  "paths": {
+    "/autos/ping": {
+      "get": {
+        "operationId": "pingAutoApi",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Auto API is running",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autos": {
+      "put": {
+        "operationId": "updateAuto",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Erfolgreich aktualisiert",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validierungsfehler",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Auto nicht gefunden ",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAutoById",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auto gefunden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Auto nicht gefunden ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAuto",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Erfolgreich erstellt ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validierungsfehler",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Keine Berechtigung ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAutoById",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Erfolgreich gelöscht",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentfiziert",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Kein Berechtigung ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Auto nicht gefunden ",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autos/all": {
+      "get": {
+        "operationId": "getAllAutos",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Liste aller Autos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteAllAutos",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Erfolgreich gelöscht",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Keine Berechtigung ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autos/baujahr": {
+      "get": {
+        "operationId": "getAutosByJahr",
+        "description": "",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jahr",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List der Autos ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ungültiges Jahr ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/autos/count": {
+      "get": {
+        "operationId": "countAutos",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Anzahl der Autos ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nicht authentifiziert",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Datenbankfehler ",
+            "content": {
+              "": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {},
+    "schemas": {
+      "Auto": {
+        "properties": {
+          "idAuto": {
+            "nullable": false,
+            "type": "integer"
+          },
+          "modell": {
+            "nullable": false,
+            "type": "string"
+          },
+          "baujahr": {
+            "nullable": false,
+            "type": "string"
+          },
+          "gewicht": {
+            "nullable": false,
+            "type": "number"
+          },
+          "leistung": {
+            "nullable": false,
+            "type": "integer"
+          },
+          "verbrenner": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "produktion": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "fsMarken": {
+            "nullable": false,
+            "type": "integer"
+          }
+        }
+      },
+      "Marke": {
+        "properties": {
+          "idMarke": {
+            "nullable": false,
+            "type": "integer"
+          },
+          "name": {
+            "nullable": false,
+            "type": "string"
+          }
+        }
+      },
+      "CountResponse": {
+        "properties": {
+          "count": {
+            "nullable": false,
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
