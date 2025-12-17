@@ -61,7 +61,7 @@ Wunschliste die zukünftig festhält welche Traumautos ich mal besitzen möchte 
 
 ## Validirung 
 
-
+https://github.com/Lucas187-glitch/ProjektM295/blob/master/Validierungsregeln.md
 
 
 ## Autor
